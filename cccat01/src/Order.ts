@@ -4,6 +4,7 @@ import Item from "./Item";
 
 export default class Order {
 
+    id: number = 0;
     cpf: Cpf;
     items: Item[];
     coupons: Coupon[];

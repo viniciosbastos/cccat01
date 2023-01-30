@@ -10,7 +10,7 @@ export default class Cpf {
         if (!isValid) throw new Error("CPF invalido");
     }
 
-    private validate () {
+    private validate(): boolean {
         if (this.cpf == null) throw new Error("CPF invalido");
         if (!this.hasValidLength()) throw new Error("CPF invalido");
         if (!this.containsOnlyNumbers()) throw new Error("CPF invalido");
@@ -26,13 +26,13 @@ export default class Cpf {
         return this.cpf == (cpfBaseValue+verifier1+verifier2);
     }
 
-    private containsOnlyNumbers() { return /^[0-9]+$/.test(this.cpf); }
+    private containsOnlyNumbers(): boolean { return /^[0-9]+$/.test(this.cpf); }
 
-    private containsOnlyEqualNumbers() { return this.cpf.split("").every(c => c === this.cpf[0]); }
+    private containsOnlyEqualNumbers(): boolean { return this.cpf.split("").every(c => c === this.cpf[0]); }
 
-    private hasValidLength() { return this.cpf.length >= 11 && this.cpf.length <= 14; }
+    private hasValidLength(): boolean { return this.cpf.length >= 11 && this.cpf.length <= 14; }
 
-    private calculateVerifier(base: string) {
+    private calculateVerifier(base: string): number {
         let sum = base
                 .split("")
                 .reverse()
