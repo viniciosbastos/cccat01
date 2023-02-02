@@ -18,6 +18,10 @@ export default class Order {
         this.coupons = coupons ?? [];
     }
 
+    addItem(newItem: Item) {
+        this.items.push(newItem);
+    }
+
     getTotal() {
         this.calculateTotalOfItems();
         this.totalValue = this.totalOfItems;
