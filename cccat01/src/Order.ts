@@ -1,21 +1,14 @@
 import Coupon from "./Coupon";
-import Cpf from "./Cpf";
 import Item from "./Item";
 
 export default class Order {
 
     id: number = 0;
-    cpf: Cpf;
-    items: Item[];
-    coupons: Coupon[];
     totalValue: number = 0;
     totalDiscount: number = 0;
     totalOfItems: number = 0;
 
-    constructor(cpf: string, items: Item[], coupons?: Coupon[]) {
-        this.cpf = new Cpf(cpf);
-        this.items = items;
-        this.coupons = coupons ?? [];
+    constructor(readonly cpf: string, readonly items: Item[], readonly coupons?: Coupon[]) {
     }
 
     addItem(newItem: Item) {
@@ -30,11 +23,12 @@ export default class Order {
     }
 
     private calculateTotalOfItems() {
+        console.log(this.items.at(1)?.getPrice())
         this.totalOfItems = this.items.reduce((accumulator, currentItem) => accumulator + currentItem.getPrice(), 0);
     }
 
     private calculateDiscounts() {
-        this.coupons.forEach(coupon => {
+        this.coupons?.forEach(coupon => {
             let discountValue = this.totalValue * coupon.discount;
             coupon.discountValue = discountValue;
             this.totalValue -= discountValue;

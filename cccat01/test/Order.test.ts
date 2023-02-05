@@ -23,9 +23,3 @@ test("Deve criar pedido com 3 produtos e desconto e calcular total", function() 
     let totalValue = order.getTotal();
     expect(totalValue).toBe(162.0);
 });
-
-test("Deve emitir erro ao tentar criar Pedido com CPF inválido", function() {
-    expect(() => new Order("11111111111", [
-        new Item("A", 3, 10.0),
-    ])).toThrow(new Error("CPF invalido"));
-});

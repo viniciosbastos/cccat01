@@ -31,3 +31,14 @@ test("Deveria atualizar um pedido existente", function() {
     let savedOrder = repository.findById(order.id);
     expect(savedOrder.items.length).toBe(4);
 });
+
+test("Deveria emitir erro ao atualizar um pedido inexistente", function() {
+    let order = new Order("09738747597", [
+        new Item("A", 3, 10.0),
+        new Item("B", 1, 50.0),
+        new Item("C", 4, 25.0),
+    ]);
+    order.id = 99;
+    let repository = new OrderRepository();
+    expect(() => repository.updateOrder(order)).toThrow(new Error("Pedido não encontrado"));
+});
