@@ -1,4 +1,8 @@
 export default class Coupon {
-    discountValue: number = 0;
-    constructor(readonly name: string, readonly discount: number) {}
+    constructor(readonly name: string, readonly discount: number, readonly expireDate: Date) {}
+
+    isExpired(): boolean {
+        const currentDateString = new Date().toLocaleDateString();
+        return this.expireDate < new Date(currentDateString);
+    }
 }

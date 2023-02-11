@@ -1,4 +1,4 @@
-export default class CpfValidator {
+export default class Cpf {
 
     private static INDEX_OFFSET = 2;
     private static MIN_REST = 2;
